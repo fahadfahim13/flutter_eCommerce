@@ -1,6 +1,7 @@
 import 'package:ecommerce/models/shoe.dart';
+import 'package:flutter/material.dart';
 
-class Cart {
+class Cart extends ChangeNotifier{
   //list of shoes
   List<Shoe> shoeShop = [
     Shoe(
@@ -14,7 +15,7 @@ class Cart {
         description: 'Sample description goes here...',
         image: 'lib/Images/2.jpg'),
     Shoe(
-        name: 'Kyrie 1',
+        name: 'Kyrie 6',
         price: '213',
         description: 'Sample description goes here...',
         image: 'lib/Images/3.jpg'),
@@ -27,11 +28,27 @@ class Cart {
 
   // list of items in user cart
 
+  List<Shoe> userCart = [];
+
   // get list of shoes for sale
+  List<Shoe> getShoeList() {
+    return shoeShop;
+  }
 
   // get cart
+  List<Shoe> getuserCart() {
+    return userCart;
+  }
 
   //add items to cart
+  void addItemToCart(Shoe shoe) {
+    userCart.add(shoe);
+    notifyListeners();
+  }
 
   //removing items from cart
+  void removeItemFromCart(Shoe shoe) {
+    userCart.remove(shoe);
+    notifyListeners();
+  }
 }
